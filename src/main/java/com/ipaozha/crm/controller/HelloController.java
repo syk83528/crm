@@ -11,7 +11,7 @@ public class HelloController {
     @RequestMapping("/api/hello")
     @ResponseBody
     public String apiHello() {
-        return "{'a':'hello'}";
+        return "{'a':'helloooooooooooo'}";
     }
     @RequestMapping("/hello")
     public String hello() {
