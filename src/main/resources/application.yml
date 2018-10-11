@@ -1,17 +1,7 @@
-spring:
-  datasource:
-    url: jdbc:mysql://39.108.223.136:3306/crm?useSSL=false&charsetEncoding=utf-8
-    driver-class-name: com.mysql.jdbc.Driver
-    username: root
-    password: aa111111
-  redis:
-    port: 6379
-    url: 39.108.223.136
-    password: aa111111
-logging:
-  pattern:
-    console: "%d    %msg%n"
 server:
   servlet:
     context-path: "/crm"
   port: 8888
+spring:
+  profiles:
+    active: dev
