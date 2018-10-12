@@ -17,4 +17,8 @@ public class HelloController {
     public String hello() {
         return "hello";
     }
+    @RequestMapping("/zz")
+    public String zz() {
+        return "zz.html";
+    }
 }
