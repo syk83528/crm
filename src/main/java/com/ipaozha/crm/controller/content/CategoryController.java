@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/category")
 public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping("/category")
+    @RequestMapping
     public String category(Map<String, Object> map, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "5") Integer size) {
         //管理员权限判断
 
@@ -29,4 +30,15 @@ public class CategoryController {
 
         return "content/category";
     }
+
+    @RequestMapping("/add")
+    public String add() {
+        return "content/categoryAdd";
+    }
+
+    @RequestMapping("/api/category/add")
+    public String apiAdd() {
+        return "content/categoryAdd";
+    }
+
 }
