@@ -5,6 +5,9 @@
         #my-page {
             float: right;
         }
+        #current-page-item {
+            background-color: cornflowerblue;
+        }
     </style>
 </head>
 <body>
@@ -68,29 +71,36 @@
                     <#--上一页---->
                 <#if (currentPage <= 1)>
                 <li class="disabled">
-                    <a href="#">上一页</a>
+                    <a href="javascript:void()">上一页</a>
                 </li>
                 <#else>
                 <li>
-                    <a href="#">上一页</a>
+                    <a href="${base}/category?page=${currentPage-1}">上一页</a>
                 </li>
                 </#if>
 
                     <#--中间页--->
                 <#list 1..categoryPage.getTotalPages() as index>
+                <#if (index == currentPage)>
                 <li>
-                    <a href="/bas">${index}</a>
+
+                    <a id="current-page-item" href="${base}/category?page=${index}">${index}</a>
                 </li>
+                <#else >
+                <li>
+                    <a href="${base}/category?page=${index}">${index}</a>
+                </li>
+                </#if>
                 </#list>
 
                     <#--下一页-->
                 <#if (currentPage >= categoryPage.getTotalPages())>
                 <li class="disabled">
-                    <a href="#">下一页</a>
+                    <a href="javascript:void()">下一页</a>
                 </li>
                 <#else >
                 <li>
-                    <a href="javascript:void()">下一页</a>
+                    <a href="${base}/category?page=${currentPage+1}">下一页</a>
                 </li>
                 </#if>
                     </ul>
