@@ -38,6 +38,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category findOne(Integer id) {
         Category category = mapper.getOne(id);
+
         return category;
     }
 }

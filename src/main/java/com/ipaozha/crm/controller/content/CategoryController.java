@@ -41,6 +41,7 @@ public class CategoryController {
     @RequestMapping("/update")
     public String update(Integer id, Map<String, Object> map) throws CrmException {
         Category category = categoryService.findOne(id);
+
         if (category == null) {
             throw new CrmException(RespEnum.params_error);
         }
