@@ -1,5 +1,6 @@
 package com.ipaozha.crm.service.impl;
 
+import com.ipaozha.crm.form.CategoryForm;
 import com.ipaozha.crm.mapper.CategoryMapper;
 import com.ipaozha.crm.pojo.Category;
 import com.ipaozha.crm.service.CategoryService;
@@ -18,5 +19,16 @@ public class CategoryServiceImpl implements CategoryService {
         PageRequest request = PageRequest.of(page, size);
         Page<Category> categoryPage = mapper.findAll(request);
         return categoryPage;
+    }
+
+    @Override
+    public Category save(CategoryForm categoryForm) {
+        Category category = new Category();
+        category.setCategoryName(categoryForm.getName());
+        category.setCategoryIcon(categoryForm.getIcon());
+        category.setCategoryType(categoryForm.getType());
+
+        Category result = mapper.save(category);
+        return result;
     }
 }

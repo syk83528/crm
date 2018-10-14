@@ -58,10 +58,10 @@
                         <img width="150px" height="150px" src="${category.categoryIcon}">
                     </td>
                     <td>
-                        ${category.createTime}
+                        ${category.createTime!""}
                     </td>
                     <td>
-                        ${category.updateTime}
+                        ${category.updateTime!""}
                     </td>
                 </tr>
                 </#list>

@@ -36,9 +36,4 @@ public class CategoryController {
         return "content/categoryAdd";
     }
 
-    @RequestMapping("/api/category/add")
-    public String apiAdd() {
-        return "content/categoryAdd";
-    }
-
 }

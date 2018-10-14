@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-md-12 column">
-                    <form role="form" action="${base}/category/api/category/add" method="post">
+                    <form role="form" action="${base}/api/category/add" method="post">
 
                         <div class="form-group">
                             <label>分类名称</label>

@@ -3,17 +3,18 @@ package com.ipaozha.crm.pojo;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Proxy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Data
 @DynamicUpdate
 @Proxy(lazy = false)
+@EntityListeners(AuditingEntityListener.class)
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +26,9 @@ public class Category {
     /** 分类icon */
     private String categoryIcon;
     /** '创建时间' */
+    @CreatedDate
     private Date createTime;
     /** '更新时间' */
+    @LastModifiedDate
     private Date updateTime;
 }
