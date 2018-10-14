@@ -1,5 +1,7 @@
 package com.ipaozha.crm.controller.content;
 
+import com.ipaozha.crm.Response.RespEnum;
+import com.ipaozha.crm.exception.CrmException;
 import com.ipaozha.crm.pojo.Category;
 import com.ipaozha.crm.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,16 @@ public class CategoryController {
     @RequestMapping("/add")
     public String add() {
         return "content/categoryAdd";
+    }
+
+    @RequestMapping("/update")
+    public String update(Integer id, Map<String, Object> map) throws CrmException {
+        Category category = categoryService.findOne(id);
+        if (category == null) {
+            throw new CrmException(RespEnum.params_error);
+        }
+        map.put("category", category);
+        return "content/categoryUpdate";
     }
 
 }

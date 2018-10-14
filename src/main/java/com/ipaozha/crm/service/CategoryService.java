@@ -9,4 +9,6 @@ public interface CategoryService {
     Page<Category> list(Integer page,Integer size);
 
     Category save(CategoryForm category);
+
+    Category findOne(Integer id);
 }

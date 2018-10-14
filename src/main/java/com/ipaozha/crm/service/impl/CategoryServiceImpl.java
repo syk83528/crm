@@ -27,8 +27,17 @@ public class CategoryServiceImpl implements CategoryService {
         category.setCategoryName(categoryForm.getName());
         category.setCategoryIcon(categoryForm.getIcon());
         category.setCategoryType(categoryForm.getType());
-
+        // 保存更新一起
+        if (categoryForm.getId() != null) {
+            category.setCategoryId(categoryForm.getId());
+        }
         Category result = mapper.save(category);
         return result;
+    }
+
+    @Override
+    public Category findOne(Integer id) {
+        Category category = mapper.getOne(id);
+        return category;
     }
 }
