@@ -33,6 +33,16 @@ spring:
       max-pool-prepared-statement-per-connection-size: 20
 logging:
   level:
-    cn.luischen.dao : DEBUG
+    com.ipaozha.dao : DEBUG
+#pagehelper
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+    returnPageInfo: check
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
 #  pattern:
 #    console: "%d    %msg%n"

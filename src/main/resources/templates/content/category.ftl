@@ -43,7 +43,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                <#list categoryPage.getContent() as category>
+                <#list categoryPage.getList() as category>
                 <tr>
                     <td>
                         ${category.categoryId}
@@ -58,10 +58,14 @@
                         <img width="150px" height="150px" src="${category.categoryIcon}">
                     </td>
                     <td>
-                        ${category.createTime!""}
+                        <#if (category.createTime)??>
+                            ${category.createTime?string('yyyy-MM-dd hh:mm:ss')}
+                        </#if>
                     </td>
                     <td>
-                        ${category.updateTime!""}
+                        <#if (category.updateTime)??>
+                            ${category.updateTime?string('yyyy-MM-dd hh:mm:ss')}
+                        </#if>
                     </td>
                 </tr>
                 </#list>
@@ -80,7 +84,7 @@
                 </#if>
 
                     <#--中间页--->
-                <#list 1..categoryPage.getTotalPages() as index>
+                <#list 1..categoryPage.getPages() as index>
                 <#if (index == currentPage)>
                 <li>
 
@@ -94,7 +98,7 @@
                 </#list>
 
                     <#--下一页-->
-                <#if (currentPage >= categoryPage.getTotalPages())>
+                <#if (currentPage >= categoryPage.getPages())>
                 <li class="disabled">
                     <a href="javascript:void()">下一页</a>
                 </li>

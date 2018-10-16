@@ -1,5 +1,6 @@
 package com.ipaozha.crm.controller.content;
 
+import com.github.pagehelper.PageInfo;
 import com.ipaozha.crm.Response.RespEnum;
 import com.ipaozha.crm.exception.CrmException;
 import com.ipaozha.crm.pojo.Category;
@@ -24,9 +25,9 @@ public class CategoryController {
         //管理员权限判断
 
         //获取数据
-        Page<Category> categoryPage = categoryService.list(page - 1, size);
+        PageInfo<Category> pageInfo = categoryService.list(page - 1, size);
         // 塞入数据
-        map.put("categoryPage", categoryPage);
+        map.put("categoryPage", pageInfo);
         map.put("currentPage", page);
         map.put("size", size);
 

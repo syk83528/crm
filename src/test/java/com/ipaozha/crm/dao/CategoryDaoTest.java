@@ -12,33 +12,33 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
 public class CategoryDaoTest {
 
     @Autowired
-    private CategoryDao categoryDao;
+    private CategoryMapper categoryDao;
 
     @Test
     public void insertByMap() {
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("category_name", "师兄最爱");
-        map.put("category_type", 101);
-        map.put("category_icon", "xxxxxx");
-
-        int result = categoryDao.insertByMap(map);
-
-        Assert.assertNotEquals(0, result);
     }
 
     @Test
     public void select() {
-        Category category = categoryDao.findById(2);
+        Category category = categoryDao.selectByPrimaryKey(2);
 
         log.info(category.toString());
 
+    }
+    
+    @Test
+    public void save() {
+        Category category = new Category();
+        category.setCategoryIcon("xxxxxxxx");
+        category.setCategoryName("天上的");
+        category.setCategoryType(35);
+
+        int result = categoryDao.insertSelective(category);
     }
 }

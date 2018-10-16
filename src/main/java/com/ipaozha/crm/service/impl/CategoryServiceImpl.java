@@ -1,7 +1,9 @@
 package com.ipaozha.crm.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.ipaozha.crm.dao.CategoryMapper;
 import com.ipaozha.crm.form.CategoryForm;
-import com.ipaozha.crm.mapper.CategoryMapper;
 import com.ipaozha.crm.pojo.Category;
 import com.ipaozha.crm.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,16 +11,19 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CategoryServiceImpl implements CategoryService {
     @Autowired
-    private CategoryMapper mapper;
+    private CategoryMapper categoryMapper;
 
     @Override
-    public Page<Category> list(Integer page, Integer size) {
-        PageRequest request = PageRequest.of(page, size);
-        Page<Category> categoryPage = mapper.findAll(request);
-        return categoryPage;
+    public PageInfo<Category> list(Integer page, Integer size) {
+        PageHelper.startPage(page, size);
+        List<Category> list = categoryMapper.list();
+        PageInfo<Category> pageInfo = PageInfo.of(list);
+        return pageInfo;
     }
 
     @Override
@@ -31,13 +36,16 @@ public class CategoryServiceImpl implements CategoryService {
         if (categoryForm.getId() != null) {
             category.setCategoryId(categoryForm.getId());
         }
-        Category result = mapper.save(category);
-        return result;
+        int result = categoryMapper.insertSelective(category);
+        if (0 == result) {
+            return null;
+        }
+        return category;
     }
 
     @Override
     public Category findOne(Integer id) {
-        Category category = mapper.getOne(id);
+        Category category = categoryMapper.selectByPrimaryKey(id);
 
         return category;
     }
