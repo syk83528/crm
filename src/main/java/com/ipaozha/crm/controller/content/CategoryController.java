@@ -6,7 +6,6 @@ import com.ipaozha.crm.exception.CrmException;
 import com.ipaozha.crm.pojo.Category;
 import com.ipaozha.crm.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +24,7 @@ public class CategoryController {
         //管理员权限判断
 
         //获取数据
-        PageInfo<Category> pageInfo = categoryService.list(page - 1, size);
+        PageInfo<Category> pageInfo = categoryService.list(page, size);
         // 塞入数据
         map.put("categoryPage", pageInfo);
         map.put("currentPage", page);

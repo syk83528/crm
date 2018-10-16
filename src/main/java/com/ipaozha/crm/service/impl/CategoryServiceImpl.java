@@ -7,8 +7,6 @@ import com.ipaozha.crm.form.CategoryForm;
 import com.ipaozha.crm.pojo.Category;
 import com.ipaozha.crm.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +20,7 @@ public class CategoryServiceImpl implements CategoryService {
     public PageInfo<Category> list(Integer page, Integer size) {
         PageHelper.startPage(page, size);
         List<Category> list = categoryMapper.list();
-        PageInfo<Category> pageInfo = PageInfo.of(list);
+        PageInfo<Category> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
 
