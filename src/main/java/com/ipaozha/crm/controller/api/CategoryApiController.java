@@ -5,10 +5,12 @@ import com.ipaozha.crm.exception.CrmException;
 import com.ipaozha.crm.form.CategoryForm;
 import com.ipaozha.crm.pojo.Category;
 import com.ipaozha.crm.service.CategoryService;
+import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,7 +37,7 @@ public class CategoryApiController {
 
         if (ObjectUtils.isEmpty(result)) {
             //失败界面
-            return "common/errors";
+            return "common/error";
         }else {
             map.put("url", "/category");
 //            //成功界面
@@ -55,11 +57,26 @@ public class CategoryApiController {
         Category result = categoryService.save(categoryForm);
         if (ObjectUtils.isEmpty(result)) {
             //失败界面
-            return "common/errors";
+            return "common/error";
         }else {
             map.put("url", "/category");
 //            //成功界面
             return "common/success";
+        }
+    }
+
+
+    @GetMapping("/delete")
+    public String delete(Integer id, Map<String, Object> map) throws Exception {
+        int result = categoryService.delete(id);
+        if (result > 0) {
+            map.put("url", "/category");
+//            //成功界面
+            return "common/success";
+        }else {
+            //失败界面
+            map.put("url", "/category");
+            return "common/error";
         }
     }
 }

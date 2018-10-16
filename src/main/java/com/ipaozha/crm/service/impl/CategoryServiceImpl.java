@@ -30,11 +30,18 @@ public class CategoryServiceImpl implements CategoryService {
         category.setCategoryName(categoryForm.getName());
         category.setCategoryIcon(categoryForm.getIcon());
         category.setCategoryType(categoryForm.getType());
-        // 保存更新一起
+
+        int result = 0;
         if (categoryForm.getId() != null) {
+            // 更新
             category.setCategoryId(categoryForm.getId());
+            result = categoryMapper.updateByPrimaryKeySelective(category);
+        }else {
+            // 插入
+            result = categoryMapper.insertSelective(category);
         }
-        int result = categoryMapper.insertSelective(category);
+
+        //结果
         if (0 == result) {
             return null;
         }
@@ -46,5 +53,11 @@ public class CategoryServiceImpl implements CategoryService {
         Category category = categoryMapper.selectByPrimaryKey(id);
 
         return category;
+    }
+
+    @Override
+    public int delete(Integer id) {
+        int result = categoryMapper.deleteByPrimaryKey(id);
+        return result;
     }
 }

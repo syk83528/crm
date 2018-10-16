@@ -11,4 +11,6 @@ public interface CategoryService {
     Category save(CategoryForm category);
 
     Category findOne(Integer id);
+
+    int delete(Integer id);
 }

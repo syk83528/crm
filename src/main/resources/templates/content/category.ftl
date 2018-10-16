@@ -40,6 +40,9 @@
                             <th>
                                 更新时间
                             </th>
+                            <th colspan="2">
+                                操作
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -66,6 +69,12 @@
                         <#if (category.updateTime)??>
                             ${category.updateTime?string('yyyy-MM-dd hh:mm:ss')}
                         </#if>
+                    </td>
+                    <td>
+                        <a href="${base}/category/update?id=${category.categoryId}">更新</a>
+                    </td>
+                    <td>
+                        <a href="${base}/api/category/delete?id=${category.categoryId}">删除</a>
                     </td>
                 </tr>
                 </#list>
