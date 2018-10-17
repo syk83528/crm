@@ -15,6 +15,9 @@
   <sql id="Base_Column_List" >
     id, name, gender, password, role, create_time, update_time
   </sql>
+  <sql id="Base_Table">
+    user
+  </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -116,4 +119,20 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+
+  <select id="login" resultType="com.ipaozha.crm.pojo.User">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM <include refid="Base_Table"/>
+    WHERE name = #{username} and password= #{md5Password}
+  </select>
+
+  <select id="getUserByUsername" resultType="com.ipaozha.crm.pojo.User">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM <include refid="Base_Table"/> as uu
+    where `name` = #{username}
+  </select>
 </mapper>

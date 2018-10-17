@@ -14,4 +14,8 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    User login(String username, String md5Password);
+
+    User getUserByUsername(String username);
 }
