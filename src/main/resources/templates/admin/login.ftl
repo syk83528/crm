@@ -5,6 +5,7 @@
     <style>
         #form-wrapper {
             margin: 0 auto;
+            float: none;
         }
     </style>
 </head>
