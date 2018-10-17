@@ -33,7 +33,7 @@ spring:
       max-pool-prepared-statement-per-connection-size: 20
 logging:
   level:
-    com.ipaozha.dao : DEBUG
+    com.ipaozha.crm.dao : DEBUG
 #pagehelper
 pagehelper:
     helperDialect: mysql
