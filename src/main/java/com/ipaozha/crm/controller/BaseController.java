@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class BaseController {
 
     @Autowired
-    private CategoryService categoryService;
+    public CategoryService categoryService;
 
     @Autowired
-    private UserService userService;
+    public UserService userService;
 }

@@ -21,8 +21,11 @@ public class CrmUtils {
             String val = uid + "_" + System.currentTimeMillis();
             boolean isSSL = false;
             Cookie cookie = new Cookie(WebConst.USER_IN_COOKIE, val);
+            // 设置所有的路径都可以拿这个cookie
             cookie.setPath("/");
-            cookie.setMaxAge(60 * 30);
+            //过期时间,单位秒
+            cookie.setMaxAge(60);
+            // 设置可以用http访问cookie
             cookie.setSecure(isSSL);
             response.addCookie(cookie);
         } catch (Exception e) {

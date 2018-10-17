@@ -6,7 +6,7 @@ public class WebConst {
     public static String USER_IN_COOKIE = "USERNAME_IN_COOKIE";
 
     /** 退出 */
-    public static String LOGIN_SESSION_KEY = "USERNAME_IN_COOKIE";
+    public static String LOGIN_SESSION_KEY = "LOGIN_SESSION_KEY";
 
 
 }

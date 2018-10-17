@@ -2,6 +2,7 @@ package com.ipaozha.crm.controller.content;
 
 import com.github.pagehelper.PageInfo;
 import com.ipaozha.crm.Response.RespEnum;
+import com.ipaozha.crm.controller.BaseController;
 import com.ipaozha.crm.exception.CrmException;
 import com.ipaozha.crm.pojo.Category;
 import com.ipaozha.crm.service.CategoryService;
@@ -14,10 +15,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/category")
-public class CategoryController {
-
-    @Autowired
-    private CategoryService categoryService;
+public class CategoryController extends BaseController {
 
     @RequestMapping
     public String category(Map<String, Object> map, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "5") Integer size) {
