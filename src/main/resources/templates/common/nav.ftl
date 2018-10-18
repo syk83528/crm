@@ -13,21 +13,21 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-fw fa-plus"></i> 商品 <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li class="dropdown-header">操作</li>
-                <li><a href="${base}/category">列表</a></li>
-                <li><a href="${base}/category/add">新增</a></li>
+                <li><a href="${base}/admin/category">列表</a></li>
+                <li><a href="${base}/admin/category/add">新增</a></li>
             </ul>
         </li>
         <li class="dropdown open">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-fw fa-plus"></i> 类目 <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li class="dropdown-header">操作</li>
-                <li><a href="${base}/category">列表</a></li>
-                <li><a href="${base}/category/add">新增</a></li>
+                <li><a href="${base}/admin/category">列表</a></li>
+                <li><a href="${base}/admin/category/add">新增</a></li>
             </ul>
         </li>
 
         <li>
-            <a href="${base}/logout"><i class="fa fa-fw fa-list-alt"></i> 登出</a>
+            <a href="${base}/admin/logout"><i class="fa fa-fw fa-list-alt"></i> 登出</a>
         </li>
     </ul>
 </nav>
