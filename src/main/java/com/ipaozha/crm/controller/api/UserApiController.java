@@ -36,9 +36,8 @@ public class UserApiController extends BaseController {
         //存储session
         session.setAttribute(WebConst.LOGIN_SESSION_KEY, user);
 
-        //存储cookie
-        CrmUtils.setCookie(response, user.getId());
-
+//        //存储cookie
+//        CrmUtils.setCookie(response, user.getId());
         //返回首页
         return "admin/index";
     }
@@ -51,9 +50,7 @@ public class UserApiController extends BaseController {
         if (bindResult.hasErrors()) {
             throw new CrmException(RespEnum.params_error);
         }
-
         User user = userService.regist(userForm);
-
         return Resp.success(user);
     }
 

@@ -1,6 +1,7 @@
 package com.ipaozha.crm.dao;
 
 import com.ipaozha.crm.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
@@ -15,7 +16,7 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
-    User login(String username, String md5Password);
+    User login(@Param("username") String username,@Param("password") String md5Password);
 
     User getUserByUsername(String username);
 }

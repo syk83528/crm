@@ -126,7 +126,7 @@
     SELECT
     <include refid="Base_Column_List"/>
     FROM <include refid="Base_Table"/>
-    WHERE name = #{username} and password= #{md5Password}
+    WHERE name = #{username} and password= #{password}
   </select>
 
   <select id="getUserByUsername" resultType="com.ipaozha.crm.pojo.User">

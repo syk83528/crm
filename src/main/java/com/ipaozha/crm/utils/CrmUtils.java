@@ -1,15 +1,30 @@
 package com.ipaozha.crm.utils;
 
 import com.ipaozha.crm.constant.WebConst;
+import com.ipaozha.crm.pojo.User;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Slf4j
 public class CrmUtils {
+
+    /**
+     * 返回当前登录用户
+     *
+     * @return
+     */
+    public static User getLoginUser(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (null == session) {
+            return null;
+        }
+        return (User) session.getAttribute(WebConst.LOGIN_SESSION_KEY);
+    }
     /**
      * 设置记住密码cookie
      *

@@ -32,4 +32,11 @@ public class UserController {
 
         return "admin/regist";
     }
+
+    @RequestMapping("/index")
+    public String index(HttpServletRequest request) {
+        return "admin/index";
+    }
+
+
 }
