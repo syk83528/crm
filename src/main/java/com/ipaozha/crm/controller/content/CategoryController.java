@@ -5,8 +5,6 @@ import com.ipaozha.crm.Response.RespEnum;
 import com.ipaozha.crm.controller.BaseController;
 import com.ipaozha.crm.exception.CrmException;
 import com.ipaozha.crm.pojo.Category;
-import com.ipaozha.crm.service.CategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/category")
+@RequestMapping("/admin/category")
 public class CategoryController extends BaseController {
 
     @RequestMapping
@@ -27,13 +25,12 @@ public class CategoryController extends BaseController {
         map.put("categoryPage", pageInfo);
         map.put("currentPage", page);
         map.put("size", size);
-
-        return "content/category";
+        return "admin/category/category";
     }
 
     @RequestMapping("/add")
     public String add() {
-        return "content/categoryAdd";
+        return "admin/category/categoryAdd";
     }
 
     @RequestMapping("/update")
@@ -44,7 +41,7 @@ public class CategoryController extends BaseController {
             throw new CrmException(RespEnum.params_error);
         }
         map.put("category", category);
-        return "content/categoryUpdate";
+        return "admin/category/categoryUpdate";
     }
 
 }

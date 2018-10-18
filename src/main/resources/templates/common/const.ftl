@@ -1,1 +1,1 @@
-<#assign base="/crm">
+<#assign base="">

@@ -18,7 +18,7 @@ import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/api/category")
+@RequestMapping("/api/admin/category")
 public class CategoryApiController {
 
     @Autowired
@@ -39,7 +39,7 @@ public class CategoryApiController {
             //失败界面
             return "common/error";
         }else {
-            map.put("url", "/category");
+            map.put("url", "/admin/category");
 //            //成功界面
             return "common/success";
         }
@@ -59,7 +59,7 @@ public class CategoryApiController {
             //失败界面
             return "common/error";
         }else {
-            map.put("url", "/category");
+            map.put("url", "/admin/category");
 //            //成功界面
             return "common/success";
         }

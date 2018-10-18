@@ -1,6 +1,6 @@
 <html>
 <head>
-    <#include "../common/include.ftl">
+    <#include "../../common/include.ftl">
     <style>
         #my-page {
             float: right;
@@ -13,7 +13,7 @@
 <body>
 <div id="wrapper" class="toggled">
 <#--边栏sidebar-->
-    <#include "../common/nav.ftl">
+    <#include "../../common/nav.ftl">
 <#--主要内容-->
     <div id="page-content-wrapper">
         <div class="container-fluid">
@@ -71,10 +71,10 @@
                         </#if>
                     </td>
                     <td>
-                        <a href="${base}/category/update?id=${category.categoryId}">更新</a>
+                        <a href="${base}/admin/category/update?id=${category.categoryId}">更新</a>
                     </td>
                     <td>
-                        <a href="${base}/api/category/delete?id=${category.categoryId}">删除</a>
+                        <a href="${base}/api/admin/category/delete?id=${category.categoryId}">删除</a>
                     </td>
                 </tr>
                 </#list>
@@ -88,7 +88,7 @@
                 </li>
                 <#else>
                 <li>
-                    <a href="${base}/category?page=${currentPage-1}">上一页</a>
+                    <a href="${base}/admin/category?page=${currentPage-1}">上一页</a>
                 </li>
                 </#if>
 
@@ -101,7 +101,7 @@
                 </li>
                 <#else >
                 <li>
-                    <a href="${base}/category?page=${index}">${index}</a>
+                    <a href="${base}/admin/category?page=${index}">${index}</a>
                 </li>
                 </#if>
                 </#list>
@@ -113,7 +113,7 @@
                 </li>
                 <#else >
                 <li>
-                    <a href="${base}/category?page=${currentPage+1}">下一页</a>
+                    <a href="${base}/admin/category?page=${currentPage+1}">下一页</a>
                 </li>
                 </#if>
                     </ul>

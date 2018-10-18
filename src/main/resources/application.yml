@@ -1,6 +1,6 @@
 server:
-  servlet:
-    context-path: "/crm"
+  #servlet:
+    #context-path: "/crm"
   port: 8888
 spring:
   profiles:
