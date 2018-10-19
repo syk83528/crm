@@ -20,7 +20,7 @@ public class AdminInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         String uri = request.getRequestURI();
 
-        log.info(String.valueOf(request.getSession().getMaxInactiveInterval()));
+//        log.info(String.valueOf(request.getSession().getMaxInactiveInterval()));
         log.info("UserAgent: {}", request.getHeader("user-agent"));
         log.info("用户访问地址: {}, 来路地址: {}", uri, IPKit.getIpAddrByRequest(request));
         //请求拦截处理

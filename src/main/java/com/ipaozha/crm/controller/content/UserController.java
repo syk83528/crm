@@ -22,8 +22,10 @@ public class UserController {
         //判断是否已登录
         User user = (User) session.getAttribute(WebConst.LOGIN_SESSION_KEY);
         if (null != user) {
+
             return "admin/index";
         }
+        //这里其实还可以再判断一下管理员权限
         return "admin/login";
     }
 
@@ -37,6 +39,4 @@ public class UserController {
     public String index(HttpServletRequest request) {
         return "admin/index";
     }
-
-
 }

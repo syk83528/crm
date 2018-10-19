@@ -1,37 +1,52 @@
 package com.ipaozha.crm.controller.api;
 
+import com.ipaozha.crm.Response.Resp;
 import com.ipaozha.crm.Response.RespEnum;
+import com.ipaozha.crm.controller.BaseController;
 import com.ipaozha.crm.exception.CrmException;
 import com.ipaozha.crm.form.CategoryForm;
 import com.ipaozha.crm.pojo.Category;
-import com.ipaozha.crm.service.CategoryService;
-import org.omg.CORBA.INTERNAL;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ipaozha.crm.utils.FileUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/api/admin/category")
-public class CategoryApiController {
-
-    @Autowired
-    private CategoryService categoryService;
+@Slf4j
+public class CategoryApiController extends BaseController {
+    @Value("${web.upload.user-icon}")
+    private String categoryPath;
 
     @PostMapping("/add")
-    public String add(@Valid CategoryForm categoryForm,BindingResult bindingResult, Map<String, Object> map) throws Exception {
+    public String add(@Valid CategoryForm categoryForm,
+                      BindingResult bindingResult,
+                      @RequestParam("file") MultipartFile file,
+                      Map<String, Object> map) throws Exception {
         //验证权限
-
+        log.info(categoryPath);
         //验证参数
         if (bindingResult.hasErrors()) {
             throw new CrmException(RespEnum.params_error);
         }
+
+
+        String uploadPath = FileUtils.upload(file, categoryPath);
+        if (StringUtils.isBlank(uploadPath)) {
+            throw new CrmException(RespEnum.image_upload_error);
+        }
+        categoryForm.setIcon(uploadPath);
         //保存
         Category result = categoryService.save(categoryForm);
 

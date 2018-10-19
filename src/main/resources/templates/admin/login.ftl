@@ -7,6 +7,10 @@
             margin: 0 auto;
             float: none;
         }
+
+        #form-wrapper form button {
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -32,6 +36,10 @@
 
                 <button type="submit" class="btn btn-default col-md-12">
                     登录
+                </button>
+
+                <button type="button" class="btn btn-default col-md-12">
+                    <a style="display: block;" href="${base}/admin/regist">注册</a>
                 </button>
             </form>
         </div>

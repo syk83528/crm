@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-md-6 column">
-                    <form role="form" action="${base}/api/category/add" method="post">
+                    <form role="form" action="${base}/api/admin/regist" method="post">
 
                         <div class="form-group">
                             <label>用户名</label>
