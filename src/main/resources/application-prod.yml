@@ -50,10 +50,10 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
 
 
-web-upload: /home/upload
 web:
-  upload:
-    user-icon: /home/upload/user-icon
-    product-img: /home/upload/product-img
+  upload: /home/upload
+user-icon: /user-icon
+product-img: /product-img
+category-img: /category-img
 #  pattern:
 #    console: "%d    %msg%n"
