@@ -58,7 +58,11 @@
                         ${category.categoryType}
                     </td>
                     <td>
-                        <img width="150px" height="150px" src="${category.categoryIcon}">
+                        <#if category.categoryIcon?starts_with("http")>
+                            <img width="150px" height="150px" src="${category.categoryIcon}">
+                        <#else >
+                            <img width="150px" height="150px" src="${baseImg}${category.categoryIcon}">
+                        </#if>
                     </td>
                     <td>
                         <#if (category.createTime)??>

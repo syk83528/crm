@@ -26,8 +26,11 @@ import java.util.Map;
 @RequestMapping("/api/admin/category")
 @Slf4j
 public class CategoryApiController extends BaseController {
-    @Value("${web.upload.user-icon}")
+    @Value("${user-icon}")
     private String categoryPath;
+
+    @Value("${web.upload}")
+    private String rootPath;
 
     @PostMapping("/add")
     public String add(@Valid CategoryForm categoryForm,
@@ -40,12 +43,17 @@ public class CategoryApiController extends BaseController {
         if (bindingResult.hasErrors()) {
             throw new CrmException(RespEnum.params_error);
         }
-
-
-        String uploadPath = FileUtils.upload(file, categoryPath);
+        //校验类型
+        Category oldCategory = categoryService.findOneByType(categoryForm.getType());
+        if (oldCategory != null) {
+            throw new CrmException(RespEnum.category_type_exist_error);
+        }
+        // 上传图片
+        String uploadPath = FileUtils.upload(file, rootPath, categoryPath);
         if (StringUtils.isBlank(uploadPath)) {
             throw new CrmException(RespEnum.image_upload_error);
         }
+        // 数据存储
         categoryForm.setIcon(uploadPath);
         //保存
         Category result = categoryService.save(categoryForm);
@@ -68,6 +76,7 @@ public class CategoryApiController extends BaseController {
         if (bindingResult.hasErrors()) {
             throw new CrmException(RespEnum.params_error);
         }
+
         //保存
         Category result = categoryService.save(categoryForm);
         if (ObjectUtils.isEmpty(result)) {

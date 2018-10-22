@@ -6,12 +6,14 @@ public enum RespEnum {
     success(0, "成功"),
 
     params_error(100, "参数错误"),
+    sql_error(101, "数据库操作异常"),
     image_upload_error(101, "图片上传失败"),
     username_password_empty(200, "用户名或密码不能为空"),
     username_password_error(201, "用户名或密码错误"),
     user_exist_error(202, "用户名已被注册"),
     user_regist_error(203, "注册失败"),
     category_file_empty_error(300, "分类图片不能为空"),
+    category_type_exist_error(301, "分类类型已存在"),
     ;
 
     private Integer code;

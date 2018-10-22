@@ -18,4 +18,8 @@ public interface CategoryMapper {
     int updateByPrimaryKey(Category record);
 
     List<Category> list();
+
+    Category selectByType(Integer type);
+
+    Integer selectByMaxType();
 }

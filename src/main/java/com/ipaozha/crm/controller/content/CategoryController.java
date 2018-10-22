@@ -29,7 +29,9 @@ public class CategoryController extends BaseController {
     }
 
     @RequestMapping("/add")
-    public String add() {
+    public String add(Map<String, Object> map) {
+        Integer maxType = categoryService.findMaxType();
+        map.put("maxType", maxType);
         return "admin/category/categoryAdd";
     }
 

@@ -10,17 +10,20 @@ public class FileUtils {
     /**
      *
      * @param file 文件
-     * @param path 文件存放路径
+     * @param path 文件根路径
+     * @param module 文件存放的模块路径
      * @return 文件路径名
      */
-    public static String upload(MultipartFile file, String path){
+    public static String upload(MultipartFile file, String path, String module){
         // 图片名为空
         if (StringUtils.isBlank(file.getOriginalFilename())) {
             return null;
         }
 
-        //使用原文件名
-        String realPath = path + "/" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
+        //存储到数据库的路径
+        String filePath = module + "/" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
+        //存储到文件的路径
+        String realPath = path + filePath;
 
         File dest = new File(realPath);
 
@@ -32,7 +35,7 @@ public class FileUtils {
         try {
             //保存文件
             file.transferTo(dest);
-            return realPath;
+            return filePath;
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

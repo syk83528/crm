@@ -2,7 +2,9 @@ package com.ipaozha.crm.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ipaozha.crm.Response.RespEnum;
 import com.ipaozha.crm.dao.CategoryMapper;
+import com.ipaozha.crm.exception.CrmException;
 import com.ipaozha.crm.form.CategoryForm;
 import com.ipaozha.crm.pojo.Category;
 import com.ipaozha.crm.service.CategoryService;
@@ -25,7 +27,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category save(CategoryForm categoryForm) {
+    public Category save(CategoryForm categoryForm) throws CrmException {
         Category category = new Category();
         category.setCategoryName(categoryForm.getName());
         category.setCategoryIcon(categoryForm.getIcon());
@@ -38,7 +40,11 @@ public class CategoryServiceImpl implements CategoryService {
             result = categoryMapper.updateByPrimaryKeySelective(category);
         }else {
             // 插入
-            result = categoryMapper.insertSelective(category);
+            try {
+                result = categoryMapper.insertSelective(category);
+            } catch (Exception e) {
+                throw new CrmException(RespEnum.sql_error.getCode(), e.getMessage());
+            }
         }
 
         //结果
@@ -59,5 +65,15 @@ public class CategoryServiceImpl implements CategoryService {
     public int delete(Integer id) {
         int result = categoryMapper.deleteByPrimaryKey(id);
         return result;
+    }
+
+    @Override
+    public Category findOneByType(Integer type) {
+        return categoryMapper.selectByType(type);
+    }
+
+    @Override
+    public Integer findMaxType() {
+        return categoryMapper.selectByMaxType();
     }
 }

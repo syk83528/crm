@@ -20,7 +20,7 @@
 
                         <div class="form-group">
                             <label>分类类型</label>
-                            <input type="text" class="form-control" name="type"/>
+                            <input type="text" class="form-control" name="type" value="${(maxType+1)!""}"/>
                         </div>
 
                         <div class="form-group">

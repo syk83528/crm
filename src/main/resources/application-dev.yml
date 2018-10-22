@@ -51,9 +51,9 @@ mybatis:
 
 
 web:
-  upload:
-    user-icon: /Users/suyikun/Source/crm-upload/user-icon
-    product-img: /Users/suyikun/Source/crm-upload/product-img
-    category-img: /Users/suyikun/Source/crm-upload/category-img
+  upload: /Users/suyikun/Source/crm-upload
+user-icon: /user-icon
+product-img: /product-img
+category-img: /category-img
 #  pattern:
 #    console: "%d    %msg%n"

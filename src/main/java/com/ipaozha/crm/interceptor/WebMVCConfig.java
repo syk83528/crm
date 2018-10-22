@@ -14,8 +14,8 @@ public class WebMVCConfig implements WebMvcConfigurer {
     private AdminInterceptor adminInterceptor;
 
 
-    @Value("web-upload")
-    private String uploadPath;
+    @Value("${web.upload}")
+    private String rootPath;
 
     /**
      * 不需要登录拦截的url:登录注册
@@ -31,6 +31,6 @@ public class WebMVCConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/upload/**").addResourceLocations("file:/Users/suyikun/Source/crm-upload/");
+        registry.addResourceHandler("/upload/**").addResourceLocations("file:"+rootPath + "/");
     }
 }
