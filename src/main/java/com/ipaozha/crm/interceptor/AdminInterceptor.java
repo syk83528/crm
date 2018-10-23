@@ -31,6 +31,9 @@ public class AdminInterceptor implements HandlerInterceptor {
             response.sendRedirect(request.getContextPath() + "/admin/login");
             return false;
         }
+
+        // 这里传过去basePath的一些参数
+
         return true;
     }
 
