@@ -3,17 +3,28 @@ package com.ipaozha.crm.utils;
 import com.ipaozha.crm.constant.WebConst;
 import com.ipaozha.crm.pojo.User;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.commonmark.Extension;
+import org.commonmark.ext.gfm.tables.TablesExtension;
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.UUID;
 
 @Slf4j
 public class CrmUtils {
 
+    /**
+     * markdown解析器
+     */
+    private static Parser parser = Parser.builder().build();
     /**
      * 返回当前登录用户
      *
@@ -69,6 +80,39 @@ public class CrmUtils {
 
     public static String getUUID(){
         return UUID.randomUUID().toString().replace("-", "");
+    }
+
+
+    /**
+     * 提取html中的文字
+     *
+     * @param html
+     * @return
+     */
+    public static String htmlToText(String html) {
+        if (StringUtils.isNotBlank(html)) {
+            return html.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+        }
+        return "";
+    }
+
+    /**
+     * markdown转换为html
+     *
+     * @param markdown
+     * @return
+     */
+    public static String mdToHtml(String markdown) {
+        if (StringUtils.isBlank(markdown)) {
+            return "";
+        }
+        java.util.List<Extension> extensions = Arrays.asList(TablesExtension.create());
+        Parser parser = Parser.builder().extensions(extensions).build();
+        Node document = parser.parse(markdown);
+        HtmlRenderer renderer = HtmlRenderer.builder().extensions(extensions).build();
+        String content = renderer.render(document);
+//        content = Commons.emoji(content);
+        return content;
     }
 
 }

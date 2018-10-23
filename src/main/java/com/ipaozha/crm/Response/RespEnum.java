@@ -14,6 +14,7 @@ public enum RespEnum {
     user_regist_error(203, "注册失败"),
     category_file_empty_error(300, "分类图片不能为空"),
     category_type_exist_error(301, "分类类型已存在"),
+    article_insert_error(400, "创建文章失败"),
     ;
 
     private Integer code;
