@@ -28,18 +28,6 @@
     </div>
 </div>
 
-
-
-        <#--<form action="/article/publish" method="post" novalidate="novalidate">-->
-            <#--<input id="title" name="title" value="标题" style="display: none">-->
-            <#--&lt;#&ndash;<input id="content" name="content" style="display: none">&ndash;&gt;-->
-            <#--<div id="my-editormd">-->
-                <#--<textarea id="my-text" name="my-text" style="display:none;"></textarea>-->
-                <#--<!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 &ndash;&gt;-->
-                <#--&lt;#&ndash;<textarea id="text" name="text" style="display:none;"></textarea>&ndash;&gt;-->
-            <#--</div>-->
-            <#--<button type="submit" id="submit-btn" >提交</button>-->
-        <#--</form>-->
 </div>
 <script type="text/javascript">
     var my_editormd;

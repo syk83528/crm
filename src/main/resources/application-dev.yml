@@ -11,9 +11,9 @@ spring:
       filters: stat
       driver-class-name: com.mysql.jdbc.Driver
       #基本属性
-      url: jdbc:mysql://39.108.223.136:3306/crm?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+      url: jdbc:mysql://localhost:3306/crm?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
       username: root
-      password: aa111111
+      password: 123456
       #配置初始化大小/最小/最大
       initial-size: 1
       min-idle: 1
@@ -50,10 +50,12 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
 
 
+
+base-upload-path: http://localhost:8888/upload
 web:
   upload: /Users/suyikun/Source/crm-upload
 user-icon: /user-icon
-product-img: /product-img
+article-img: /article-img
 category-img: /category-img
 #  pattern:
 #    console: "%d    %msg%n"
