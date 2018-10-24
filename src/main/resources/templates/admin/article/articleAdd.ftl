@@ -2,11 +2,12 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <#include "./common/include.ftl">
-    <link type="text/css" href="../editormd/lib/codemirror/codemirror.min.css">
-    <script type="text/javascript" src="../editormd/lib/jquery-3.1.1/jquery-3.1.1.js"></script>
-    <script type="text/javascript" src="../editormd/src/editormd.js"></script>
-    <link rel="stylesheet" href="../editormd/css/editormd.min.css">
+    <#include "${base}/common/include.ftl">
+
+    <link rel="stylesheet" href="${base}/editormd/lib/codemirror/codemirror.min.css">
+    <script type="text/javascript" src="${base}/editormd/lib/jquery-3.1.1/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="${base}/editormd/src/editormd.js"></script>
+    <link rel="stylesheet" href="${base}/editormd/css/editormd.min.css">
 
 </head>
 <body>
@@ -14,7 +15,7 @@
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <form role="form" action="/article/publish" method="post" novalidate="novalidate">
+            <form role="form" action="${base}/admin/article/add" method="post" novalidate="novalidate">
                 <div class="form-group">
                     <input type="text" name="title" value="文章标题" />
                 </div>
@@ -30,13 +31,14 @@
 
 </div>
 <script type="text/javascript">
+
     var my_editormd;
     $(function () {
         my_editormd = editormd("my-editormd", {//注意1：这里的就是上面的DIV的id属性值
             width: "90%",
             height: 640,
             markdown: "editing",
-            path: 'editormd/lib/',//注意2：你的路径
+            path: '/editormd/lib/',//注意2：你的路径
             saveHTMLToTextarea : true,//注意3：这个配置，方便post提交表单
             syncScrolling : "single",// 同步滚动
             theme        : "lesser-dark",// 工具栏风格

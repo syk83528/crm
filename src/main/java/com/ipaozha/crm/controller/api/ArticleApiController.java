@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/article")
+@RequestMapping("/api/admin/article")
 @Slf4j
 public class ArticleApiController extends BaseController {
 

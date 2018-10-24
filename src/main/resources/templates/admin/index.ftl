@@ -1,7 +1,7 @@
 <#--${(Session.LOGIN_SESSION_KEY!"null")}-->
 <html>
 <head>
-    <#include "../common/include.ftl">
+    <#include "${base}/common/include.ftl">
     <style>
 
     </style>
@@ -9,7 +9,7 @@
 <body>
 <div id="wrapper" class="toggled">
 <#--边栏sidebar-->
-    <#include "../common/nav.ftl">
+    <#include "${base}/common/nav.ftl">
 <#--主要内容-->
     <div id="page-content-wrapper">
         <div class="container-fluid">

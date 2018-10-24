@@ -16,21 +16,21 @@
   </sql>
 
   <sql id="Base_Table">
-    category
+    t_category
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select
     <include refid="Base_Column_List"/>
-    from category
+    from t_category
     where category_id = #{categoryId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from category
+    delete from t_category
     where category_id = #{categoryId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ipaozha.crm.pojo.Category" useGeneratedKeys="true" keyColumn="category_id"
           keyProperty="categoryId">
-    insert into category (category_id, category_name, category_type, 
+    insert into t_category (category_id, category_name, category_type, 
       category_icon, create_time, update_time
       )
     values (#{categoryId,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, #{categoryType,jdbcType=INTEGER}, 
@@ -39,7 +39,7 @@
   </insert>
   <insert id="insertSelective" parameterType="com.ipaozha.crm.pojo.Category" useGeneratedKeys="true"
           keyColumn="category_id" keyProperty="categoryId">
-    insert into category
+    insert into t_category
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="categoryId != null">
         category_id,
@@ -83,7 +83,7 @@
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ipaozha.crm.pojo.Category" useGeneratedKeys="true"
           keyColumn="category_id" keyProperty="categoryId">
-    update category
+    update t_category
     <set>
       <if test="categoryName != null">
         category_name = #{categoryName,jdbcType=VARCHAR},
@@ -105,7 +105,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ipaozha.crm.pojo.Category" useGeneratedKeys="true"
           keyColumn="category_id" keyProperty="categoryId">
-    update category
+    update t_category
     set category_name = #{categoryName,jdbcType=VARCHAR},
       category_type = #{categoryType,jdbcType=INTEGER},
       category_icon = #{categoryIcon,jdbcType=VARCHAR},

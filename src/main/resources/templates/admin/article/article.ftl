@@ -98,16 +98,16 @@
 
                     <#--中间页--->
                 <#list 1..categoryPage.getPages() as index>
-                <#if (index == currentPage)>
+                    <#if (index == currentPage)>
                 <li>
 
                     <a id="current-page-item" href="${base}/category?page=${index}">${index}</a>
                 </li>
-                <#else >
+                    <#else >
                 <li>
                     <a href="${base}/admin/category?page=${index}">${index}</a>
                 </li>
-                </#if>
+                    </#if>
                 </#list>
 
                     <#--下一页-->

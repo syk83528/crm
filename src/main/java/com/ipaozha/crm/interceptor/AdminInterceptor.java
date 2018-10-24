@@ -4,6 +4,7 @@ import com.ipaozha.crm.pojo.User;
 import com.ipaozha.crm.utils.CrmUtils;
 import com.ipaozha.crm.utils.IPKit;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,9 +17,15 @@ import java.io.IOException;
 @Component
 public class AdminInterceptor implements HandlerInterceptor {
 
+    private  String baseImg = "/upload";
+
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         String uri = request.getRequestURI();
+        // 这里传过去basePath的一些参数
+        request.getSession().setAttribute("base", "");
+        request.getSession().setAttribute("baseImg", baseImg);
 
 //        log.info(String.valueOf(request.getSession().getMaxInactiveInterval()));
         log.info("UserAgent: {}", request.getHeader("user-agent"));
@@ -32,7 +39,6 @@ public class AdminInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        // 这里传过去basePath的一些参数
 
         return true;
     }

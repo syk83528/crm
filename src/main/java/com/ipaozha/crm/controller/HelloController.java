@@ -21,9 +21,5 @@ public class HelloController {
     public String zz() {
         return "zz.html";
     }
-    @RequestMapping("/markdown")
-    public String markdown() {
-        return "markdown";
-    }
 
 }
