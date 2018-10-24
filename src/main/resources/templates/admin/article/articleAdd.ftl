@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <#include "${base}/common/include.ftl">
+    <#include "../../common/include.ftl">
 
     <link rel="stylesheet" href="${base}/editormd/lib/codemirror/codemirror.min.css">
     <script type="text/javascript" src="${base}/editormd/lib/jquery-3.1.1/jquery-3.1.1.js"></script>

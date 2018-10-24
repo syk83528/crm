@@ -1,6 +1,6 @@
 <html>
 <head>
-    <#include "${base}/common/include.ftl">
+    <#include "../../common/include.ftl">
     <link rel="stylesheet" href="${base}/editormd//css/editormd.min.css"/>
     <style>
         #content li{

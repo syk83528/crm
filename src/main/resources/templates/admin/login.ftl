@@ -1,6 +1,6 @@
 <html>
 <head>
-    <#include "${base}/common/include.ftl">
+    <#include "../common/include.ftl">
 
     <style>
         #form-wrapper {

@@ -1,6 +1,6 @@
 <html>
 <head>
-    <#include "${base}/common/include.ftl">
+    <#include "../../common/include.ftl">
     <style>
         #my-page {
             float: right;
@@ -13,7 +13,7 @@
 <body>
 <div id="wrapper" class="toggled">
 <#--边栏sidebar-->
-    <#include "${base}/common/nav.ftl">
+    <#include "../../common/nav.ftl">
 <#--主要内容-->
     <div id="page-content-wrapper">
         <div class="container-fluid">

@@ -1,7 +1,7 @@
 <#--${(Session.LOGIN_SESSION_KEY!"null")}-->
 <html>
 <head>
-    <#include "${base}/common/include.ftl">
+    <#include "../common/include.ftl">
     <style>
 
     </style>
