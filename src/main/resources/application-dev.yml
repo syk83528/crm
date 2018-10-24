@@ -51,7 +51,7 @@ mybatis:
 
 
 
-base-upload-path: http://localhost:8888/upload
+base-upload-path: http://localhost/upload
 web:
   upload: /Users/suyikun/Source/crm-upload
 user-icon: /user-icon

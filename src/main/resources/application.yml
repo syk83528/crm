@@ -1,7 +1,7 @@
 server:
   #servlet:
     #context-path: "/crm"
-  port: 8888
+  port: 80
 spring:
   profiles:
     active: dev

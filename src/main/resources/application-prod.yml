@@ -50,11 +50,11 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
 
 
-base-upload-path: http://www.ipaozha.com:8888/upload
+base-upload-path: http://www.ipaozha.com/upload
 web:
   upload: /home/upload
 user-icon: /user-icon
-product-img: /product-img
+article-img: /article-img
 category-img: /category-img
 #  pattern:
 #    console: "%d    %msg%n"
