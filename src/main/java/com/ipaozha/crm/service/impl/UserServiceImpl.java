@@ -55,4 +55,10 @@ public class UserServiceImpl implements UserService {
 
         return userMapper.selectByPrimaryKey(user.getId());
     }
+
+    @Override
+    public User findUser(Integer id) {
+        User user = userMapper.selectByPrimaryKey(id);
+        return user;
+    }
 }

@@ -9,4 +9,6 @@ public interface UserService {
     User login(String username, String password) throws CrmException;
 
     User regist(UserForm userForm) throws CrmException;
+
+    User findUser(Integer id);
 }

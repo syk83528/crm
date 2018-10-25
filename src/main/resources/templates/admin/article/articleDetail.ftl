@@ -1,17 +1,34 @@
 <html>
 <head>
     <#include "../../common/include.ftl">
-    <link rel="stylesheet" href="${base}/editormd//css/editormd.min.css"/>
-    <style>
-        #content li{
-            list-style:disc;
-        }
-    </style>
+    <link rel="stylesheet" href="${base}/editormd/css/editormd.min.css"/>
+
+    <#--less处理-->
+    <link rel="stylesheet/less" type="text/css" href="${base}/less/articleDetail.less" />
+    <script src="${base}/less/less.js" type="text/javascript"></script>
 </head>
 <body>
+<#--标题-->
+<div id="wrapper">
+    <h1>${content.title!""}</h1>
+    <#--人物头像,描述,创建时间,更新时间,点赞数目,收藏数目-->
+    <div>
+        <div>
+            <img class="img-circle" width="50px" height="50px" src="${content.iconImage}">
+        </div>
+        <div>
+            <label>
+                <#if (content.updateTime)??>
+                    ${content.updateTime?string('yyyy-MM-dd hh:mm:ss')}
+                </#if>
+            </label><br />
+            <label></label>
+        </div>
+    </div>
 
-<div align="center" id="content-editormd">
-    <textarea style="display:none;">${content.content}</textarea>
+    <div align="center" id="content-editormd">
+        <textarea style="display:none;">${content.content}</textarea>
+    </div>
 </div>
 
 
