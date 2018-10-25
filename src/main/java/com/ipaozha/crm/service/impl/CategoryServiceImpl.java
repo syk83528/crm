@@ -19,12 +19,19 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryMapper categoryMapper;
 
     @Override
+    public List<Category> list() {
+        List<Category> list = categoryMapper.list();
+        return list;
+    }
+
+    @Override
     public PageInfo<Category> list(Integer page, Integer size) {
         PageHelper.startPage(page, size);
         List<Category> list = categoryMapper.list();
         PageInfo<Category> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
+
 
     @Override
     public Category save(CategoryForm categoryForm) throws CrmException {

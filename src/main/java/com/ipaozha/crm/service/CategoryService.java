@@ -5,9 +5,13 @@ import com.ipaozha.crm.exception.CrmException;
 import com.ipaozha.crm.form.CategoryForm;
 import com.ipaozha.crm.pojo.Category;
 
+import java.util.List;
+
 public interface CategoryService {
 
     PageInfo<Category> list(Integer page, Integer size);
+
+    List<Category> list();
 
     Category save(CategoryForm category) throws CrmException;
 

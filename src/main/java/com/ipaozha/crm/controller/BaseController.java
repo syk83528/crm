@@ -1,5 +1,6 @@
 package com.ipaozha.crm.controller;
 
+import com.ipaozha.crm.service.ArticleService;
 import com.ipaozha.crm.service.CategoryService;
 import com.ipaozha.crm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ public class BaseController {
 
     @Autowired
     public UserService userService;
+
+    @Autowired
+    public ArticleService articleService;
 
     @Value("${base-upload-path}")
     public String baseUploadPath;

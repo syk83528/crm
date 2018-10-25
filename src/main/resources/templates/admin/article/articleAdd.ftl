@@ -2,28 +2,46 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <#--通用样式-->
     <#include "../../common/include.ftl">
-
+    <#--md相关-->
     <link rel="stylesheet" href="${base}/editormd/lib/codemirror/codemirror.min.css">
-    <script type="text/javascript" src="${base}/editormd/lib/jquery-3.1.1/jquery-3.1.1.js"></script>
     <script type="text/javascript" src="${base}/editormd/src/editormd.js"></script>
     <link rel="stylesheet" href="${base}/editormd/css/editormd.min.css">
-
+    <#--less处理-->
+    <link rel="stylesheet/less" type="text/css" href="${base}/less/articleAdd.less" />
+    <script src="${base}/less/less.js" type="text/javascript"></script>
 </head>
 <body>
 <h1 style="text-align: center">发布文章</h1>
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <form role="form" action="${base}/admin/article/add" method="post" novalidate="novalidate">
-                <div class="form-group">
-                    <input type="text" name="title" value="文章标题" />
+
+            <form action="${base}/api/admin/article/publish" method="post" enctype="multipart/form-data">
+            <div id="content">
+
+                <div class="title input form-group">
+                    <input type="text" name="title" class="form-control" placeholder="请输入标题">
                 </div>
+
+                <div class="head input form-group">
+                    <select name="category" class="form-control">
+                        <#list categoryList as category>
+                            <option value="${category.categoryType}">
+                                ${category.categoryName}
+                            </option>
+                        </#list>
+                    </select>
+                    <input type="text" name="type" class="form-control" placeholder="请输入类型">
+                </div>
+
                 <div id="my-editormd" class="form-group">
                     <textarea id="my-text" name="my-text" style="display:none;"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-default">提交</button>
+            </div>
             </form>
         </div>
     </div>
@@ -47,7 +65,7 @@
             /**上传图片相关配置如下*/
             imageUpload : true,//开启本地图片上传
             imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-            imageUploadURL : "${base}/article/upload",//图片上传地址
+            imageUploadURL : "${base}/api/admin/article/upload",//图片上传地址
             onload : function() {//上传成功之后的回调
                 console.log('正在上传', this);
             }
@@ -89,3 +107,8 @@
     });
 </script>
 </body>
+<#--<#if productInfo.categoryType?? && productInfo.categoryType == category.categoryType>-->
+                            <#--<option value="${category.categoryType}" selected>${category.categoryName}</option>-->
+<#--<#else >-->
+                            <#--<option value="${category.categoryType}">${category.categoryName}</option>-->
+<#--</#if>-->

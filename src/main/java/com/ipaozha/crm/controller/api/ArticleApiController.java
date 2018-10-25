@@ -4,17 +4,15 @@ import com.ipaozha.crm.Response.Resp;
 import com.ipaozha.crm.Response.RespEnum;
 import com.ipaozha.crm.controller.BaseController;
 import com.ipaozha.crm.dao.ContentMapper;
+import com.ipaozha.crm.exception.CrmAuthException;
 import com.ipaozha.crm.exception.CrmException;
-import com.ipaozha.crm.pojo.Category;
-import com.ipaozha.crm.pojo.Content;
+import com.ipaozha.crm.pojo.Article;
 import com.ipaozha.crm.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.omg.CORBA.OBJ_ADAPTER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,28 +38,14 @@ public class ArticleApiController extends BaseController {
 
     @RequestMapping("/publish")
     @ResponseBody
-    public Resp publish(@RequestParam Map<String, Object> map) {
-
-        Content content = new Content();
-
-        content.setTitle((String) map.get("title"));
-        content.setContent((String) map.get("my-text"));
-
-        int result = mapper.insertSelective(content);
-
-        if (result > 0) {
-            return Resp.success(null);
-        }else {
-            return Resp.error(RespEnum.article_insert_error);
-        }
+    public Resp publish(@RequestParam Map<String, Object> map) throws CrmException, CrmAuthException {
+        Article article = articleService.saveArticle(map);
+        return Resp.success(article);
     }
 
     @RequestMapping("/upload")
     @ResponseBody
     public Map<String, Object> upload(HttpSession session, @RequestParam(value = "editormd-image-file") MultipartFile file) throws CrmException {
-
-        //对图片名字进行一次转码
-
 
         // 上传图片
         String uploadPath = FileUtils.upload(file, rootPath, articlePath);

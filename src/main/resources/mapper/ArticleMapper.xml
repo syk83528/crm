@@ -55,7 +55,7 @@
     delete from t_article
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ipaozha.crm.pojo.Article" >
+  <insert id="insert" parameterType="com.ipaozha.crm.pojo.Article" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
     insert into t_article (id, title, titlePic, 
       author_id, type, status, 
       category_id, category_name, allow_comment, 
@@ -67,7 +67,7 @@
       #{likeCount,jdbcType=INTEGER}, #{collectCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ipaozha.crm.pojo.Article" >
+  <insert id="insertSelective" parameterType="com.ipaozha.crm.pojo.Article" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
     insert into t_article
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

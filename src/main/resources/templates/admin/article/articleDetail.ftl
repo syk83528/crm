@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div id="content-editormd">
+<div align="center" id="content-editormd">
     <textarea style="display:none;">${content.content}</textarea>
 </div>
 
