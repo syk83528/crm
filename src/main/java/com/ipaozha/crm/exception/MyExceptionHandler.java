@@ -22,4 +22,11 @@ public class MyExceptionHandler {
     public String hanleAuthException(CrmAuthException exception) {
         return "/admin/login";
     }
+
+    @ExceptionHandler(Exception.class)
+    public Void handleException(Exception exception) {
+
+
+        return null;
+    }
 }
