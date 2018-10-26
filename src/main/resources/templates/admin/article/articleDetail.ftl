@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <div align="center" id="content-editormd">
+    <div id="content-editormd">
         <textarea style="display:none;">${content.content}</textarea>
     </div>
 </div>
