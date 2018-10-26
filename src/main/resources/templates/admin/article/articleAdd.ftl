@@ -55,13 +55,13 @@
         my_editormd = editormd("my-editormd", {//注意1：这里的就是上面的DIV的id属性值
             width: "90%",
             height: 640,
-            markdown: "editing",
+            markdown: "",
             path: '/editormd/lib/',//注意2：你的路径
             saveHTMLToTextarea : true,//注意3：这个配置，方便post提交表单
             syncScrolling : "single",// 同步滚动
             theme        : "lesser-dark",// 工具栏风格
-            previewTheme : "dark",// 预览页面风格
-            editorTheme  : "paraiso-dark",// 设置编辑页面风格
+            // previewTheme : "dark",// 预览页面风格
+            // editorTheme  : "paraiso-dark",// 设置编辑页面风格
             /**上传图片相关配置如下*/
             imageUpload : true,//开启本地图片上传
             imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
