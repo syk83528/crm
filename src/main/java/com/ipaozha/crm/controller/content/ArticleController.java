@@ -33,6 +33,12 @@ public class ArticleController extends BaseController {
 
         //获取数据
         PageInfo<Article> pageInfo = articleService.list(page, size);
+        //处理一下content,获取前15个字
+        for (Article article : pageInfo.getList()) {
+            if (article.getContent().length() >= 15) {
+                article.setContent(article.getContent().substring(0, 14));
+            }
+        }
         // 塞入数据
         map.put("articlePage", pageInfo);
         map.put("currentPage", page);

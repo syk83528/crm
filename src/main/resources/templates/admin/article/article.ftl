@@ -23,16 +23,25 @@
                         <thead>
                         <tr>
                             <th>
-                                编号
+                                id
                             </th>
                             <th>
-                                分类名称
+                                标题
                             </th>
                             <th>
-                                分类类型
+                                内容
                             </th>
                             <th>
-                                分类图标
+                                作者id
+                            </th>
+                            <th>
+                                允许评论
+                            </th>
+                            <th>
+                                点赞数
+                            </th>
+                            <th>
+                                收藏数
                             </th>
                             <th>
                                 创建时间
@@ -46,39 +55,46 @@
                         </tr>
                         </thead>
                         <tbody>
-                <#list categoryPage.getList() as category>
+                <#list articlePage.getList() as article>
                 <tr>
                     <td>
-                        ${category.categoryId}
+                        ${article.getId()!""}
                     </td>
                     <td>
-                        ${category.categoryName}
+                        ${article.title!""}
                     </td>
                     <td>
-                        ${category.categoryType}
+                        <a href="/admin/article/${article.id}">${article.content!""}</a>
                     </td>
                     <td>
-                        <#if category.categoryIcon?starts_with("http")>
-                            <img width="150px" height="150px" src="${category.categoryIcon}">
-                        <#else >
-                            <img width="150px" height="150px" src="${baseImg}${category.categoryIcon}">
+                        ${article.authorId!""}
+                    </td>
+                    <td>
+                        <#if (article.allowComment)??>
+                            ${(article.allowComment)?string('是','否')?html}
                         </#if>
                     </td>
                     <td>
-                        <#if (category.createTime)??>
-                            ${category.createTime?string('yyyy-MM-dd hh:mm:ss')}
+                        ${article.likeCount!""}
+                    </td>
+                    <td>
+                        ${article.collectCount!""}
+                    </td>
+                    <td>
+                        <#if (article.createTime)??>
+                            ${article.createTime?string('yyyy-MM-dd hh:mm:ss')}
                         </#if>
                     </td>
                     <td>
-                        <#if (category.updateTime)??>
-                            ${category.updateTime?string('yyyy-MM-dd hh:mm:ss')}
+                        <#if (article.updateTime)??>
+                            ${article.updateTime?string('yyyy-MM-dd hh:mm:ss')}
                         </#if>
                     </td>
                     <td>
-                        <a href="${base}/admin/category/update?id=${category.categoryId}">更新</a>
+                        <a href="${base}/admin/category/update?id=${article.id}">更新</a>
                     </td>
                     <td>
-                        <a href="${base}/api/admin/category/delete?id=${category.categoryId}">删除</a>
+                        <a href="${base}/api/admin/category/delete?id=${article.id}">删除</a>
                     </td>
                 </tr>
                 </#list>
@@ -97,7 +113,7 @@
                 </#if>
 
                     <#--中间页--->
-                <#list 1..categoryPage.getPages() as index>
+                <#list 1..articlePage.getPages() as index>
                     <#if (index == currentPage)>
                 <li>
 
@@ -111,7 +127,7 @@
                 </#list>
 
                     <#--下一页-->
-                <#if (currentPage >= categoryPage.getPages())>
+                <#if (currentPage >= articlePage.getPages())>
                 <li class="disabled">
                     <a href="javascript:void()">下一页</a>
                 </li>
