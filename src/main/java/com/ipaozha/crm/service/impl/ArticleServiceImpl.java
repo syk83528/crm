@@ -1,11 +1,14 @@
 package com.ipaozha.crm.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ipaozha.crm.Response.RespEnum;
 import com.ipaozha.crm.dao.ArticleMapper;
 import com.ipaozha.crm.dao.ContentMapper;
 import com.ipaozha.crm.exception.CrmAuthException;
 import com.ipaozha.crm.exception.CrmException;
 import com.ipaozha.crm.pojo.Article;
+import com.ipaozha.crm.pojo.Category;
 import com.ipaozha.crm.pojo.User;
 import com.ipaozha.crm.service.ArticleService;
 import com.ipaozha.crm.service.UserService;
@@ -16,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -39,10 +43,13 @@ public class ArticleServiceImpl implements ArticleService {
             String title = (String) map.get("title");
             Integer categoryId = new Integer((String) map.get("category"));
             String content = (String) map.get("my-text");
+            String type = (String) map.get("type");
             article.setTitle(title);
             article.setCategoryId(categoryId);
             article.setContent(content);
             article.setAuthorId(user.getId());
+            article.setType(type);
+
 
             int result = articleMapper.insertSelective(article);
             if (result > 0) {
@@ -54,5 +61,14 @@ public class ArticleServiceImpl implements ArticleService {
             e.printStackTrace();
             throw new CrmException(RespEnum.article_insert_error);
         }
+    }
+
+    @Override
+    public PageInfo<Article> list(Integer page, Integer size) {
+        PageHelper.startPage(page, size);
+        List<Article> list = articleMapper.list();
+        PageInfo<Article> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+
     }
 }

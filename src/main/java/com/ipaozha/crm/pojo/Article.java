@@ -9,6 +9,8 @@ public class Article {
 
     private String titlepic;
 
+    private String content;
+
     private Integer authorId;
 
     private String type;
@@ -29,12 +31,11 @@ public class Article {
 
     private Date updateTime;
 
-    private String content;
-
-    public Article(Integer id, String title, String titlepic, Integer authorId, String type, Integer status, Integer categoryId, String categoryName, Boolean allowComment, Integer likeCount, Integer collectCount, Date createTime, Date updateTime, String content) {
+    public Article(Integer id, String title, String titlepic, String content, Integer authorId, String type, Integer status, Integer categoryId, String categoryName, Boolean allowComment, Integer likeCount, Integer collectCount, Date createTime, Date updateTime) {
         this.id = id;
         this.title = title;
         this.titlepic = titlepic;
+        this.content = content;
         this.authorId = authorId;
         this.type = type;
         this.status = status;
@@ -45,7 +46,6 @@ public class Article {
         this.collectCount = collectCount;
         this.createTime = createTime;
         this.updateTime = updateTime;
-        this.content = content;
     }
 
     public Article() {
@@ -74,6 +74,14 @@ public class Article {
 
     public void setTitlepic(String titlepic) {
         this.titlepic = titlepic == null ? null : titlepic.trim();
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 
     public Integer getAuthorId() {
@@ -154,13 +162,5 @@ public class Article {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
     }
 }

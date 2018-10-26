@@ -2,6 +2,8 @@ package com.ipaozha.crm.dao;
 
 import com.ipaozha.crm.pojo.Article;
 
+import java.util.List;
+
 public interface ArticleMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -13,8 +15,7 @@ public interface ArticleMapper {
 
     int updateByPrimaryKeySelective(Article record);
 
-    int updateByPrimaryKeyWithBLOBs(Article record);
-
     int updateByPrimaryKey(Article record);
 
+    List<Article> list();
 }

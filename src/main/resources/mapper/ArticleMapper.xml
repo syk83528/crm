@@ -6,6 +6,7 @@
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="titlePic" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="content" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="author_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="type" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -16,38 +17,15 @@
       <arg column="collect_count" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-    </constructor>
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.ipaozha.crm.pojo.Article" >
-    <constructor >
-      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="titlePic" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="author_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="type" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="category_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="category_name" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="allow_comment" jdbcType="BIT" javaType="java.lang.Boolean" />
-      <arg column="like_count" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="collect_count" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="content" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, title, titlePic, author_id, type, status, category_id, category_name, allow_comment, 
-    like_count, collect_count, create_time, update_time
+    id, title, titlePic, content, author_id, type, status, category_id, category_name, 
+    allow_comment, like_count, collect_count, create_time, update_time
   </sql>
-  <sql id="Blob_Column_List" >
-    content
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from t_article
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -55,19 +33,19 @@
     delete from t_article
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ipaozha.crm.pojo.Article" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+  <insert id="insert" parameterType="com.ipaozha.crm.pojo.Article" >
     insert into t_article (id, title, titlePic, 
-      author_id, type, status, 
-      category_id, category_name, allow_comment, 
-      like_count, collect_count, create_time, 
-      update_time, content)
+      content, author_id, type, 
+      status, category_id, category_name, 
+      allow_comment, like_count, collect_count, 
+      create_time, update_time)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{titlepic,jdbcType=VARCHAR}, 
-      #{authorId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{categoryId,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, #{allowComment,jdbcType=BIT}, 
-      #{likeCount,jdbcType=INTEGER}, #{collectCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+      #{content,jdbcType=VARCHAR}, #{authorId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, 
+      #{allowComment,jdbcType=BIT}, #{likeCount,jdbcType=INTEGER}, #{collectCount,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.ipaozha.crm.pojo.Article" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+  <insert id="insertSelective" parameterType="com.ipaozha.crm.pojo.Article" >
     insert into t_article
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -78,6 +56,9 @@
       </if>
       <if test="titlepic != null" >
         titlePic,
+      </if>
+      <if test="content != null" >
+        content,
       </if>
       <if test="authorId != null" >
         author_id,
@@ -109,9 +90,6 @@
       <if test="updateTime != null" >
         update_time,
       </if>
-      <if test="content != null" >
-        content,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -122,6 +100,9 @@
       </if>
       <if test="titlepic != null" >
         #{titlepic,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
       </if>
       <if test="authorId != null" >
         #{authorId,jdbcType=INTEGER},
@@ -153,9 +134,6 @@
       <if test="updateTime != null" >
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
-      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ipaozha.crm.pojo.Article" >
@@ -166,6 +144,9 @@
       </if>
       <if test="titlepic != null" >
         titlePic = #{titlepic,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
       </if>
       <if test="authorId != null" >
         author_id = #{authorId,jdbcType=INTEGER},
@@ -197,33 +178,14 @@
       <if test="updateTime != null" >
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ipaozha.crm.pojo.Article" >
-    update t_article
-    set title = #{title,jdbcType=VARCHAR},
-      titlePic = #{titlepic,jdbcType=VARCHAR},
-      author_id = #{authorId,jdbcType=INTEGER},
-      type = #{type,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      category_id = #{categoryId,jdbcType=INTEGER},
-      category_name = #{categoryName,jdbcType=VARCHAR},
-      allow_comment = #{allowComment,jdbcType=BIT},
-      like_count = #{likeCount,jdbcType=INTEGER},
-      collect_count = #{collectCount,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ipaozha.crm.pojo.Article" >
     update t_article
     set title = #{title,jdbcType=VARCHAR},
       titlePic = #{titlepic,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
       author_id = #{authorId,jdbcType=INTEGER},
       type = #{type,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
@@ -236,4 +198,15 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <sql id="Base_Table">
+    t_article
+  </sql>
+
+  <select id="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    <include refid="Base_Table"/>
+  </select>
 </mapper>

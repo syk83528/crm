@@ -21,6 +21,7 @@ public class UserController {
     public String login(HttpSession session) {
         //判断是否已登录
         User user = (User) session.getAttribute(WebConst.LOGIN_SESSION_KEY);
+
         if (null != user) {
 
             return "admin/index";

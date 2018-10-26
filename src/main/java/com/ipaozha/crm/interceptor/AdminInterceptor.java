@@ -39,7 +39,8 @@ public class AdminInterceptor implements HandlerInterceptor {
             return false;
         }
 
-
+        //先在这里存一下user
+        request.setAttribute("user", user);
         return true;
     }
 
