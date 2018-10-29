@@ -26,9 +26,9 @@
                 </div>
 
                 <div class="head input form-group">
-                    <select name="category" class="form-control">
+                    <select name="categoryId" class="form-control">
                         <#list categoryList as category>
-                            <option value="${category.categoryType}">
+                            <option value="${category.categoryId}">
                                 ${category.categoryName}
                             </option>
                         </#list>
