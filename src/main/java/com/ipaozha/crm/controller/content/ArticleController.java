@@ -35,8 +35,9 @@ public class ArticleController extends BaseController {
         PageInfo<Article> pageInfo = articleService.list(page, size);
         //处理一下content,获取前15个字
         for (Article article : pageInfo.getList()) {
-            if (article.getContent().length() >= 15) {
-                article.setContent(article.getContent().substring(0, 14));
+            if (null != article.getContent() &&  article.getContent().length() >= 15) {
+                String content = article.getContent().substring(0, 14);
+                article.setContent(content);
             }
         }
         // 塞入数据

@@ -43,6 +43,7 @@ public class ArticleServiceImpl implements ArticleService {
             //取值
             Article article = new Article();
             BeanUtils.copyProperties(articleForm, article);
+            article.setContent(articleForm.getText());
             article.setAuthorId(user.getId());
 
             int result = articleMapper.insertSelective(article);
