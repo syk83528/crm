@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,10 +38,13 @@ public class ArticleApiController extends BaseController {
     private ContentMapper mapper;
 
     @RequestMapping("/publish")
-    @ResponseBody
-    public Resp publish(@RequestParam Map<String, Object> map) throws CrmException, CrmAuthException {
+    public String publish(@RequestParam Map<String, Object> map) throws CrmException, CrmAuthException {
         Article article = articleService.saveArticle(map);
-        return Resp.success(article);
+        //能到这里肯定成功
+        map.put("url", "/admin/article");
+        map.put("msg", "创建文章成功");
+//            //成功界面
+        return "common/success";
     }
 
     @RequestMapping("/upload")
