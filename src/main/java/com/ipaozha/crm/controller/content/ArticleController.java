@@ -65,7 +65,7 @@ public class ArticleController extends BaseController {
 //        String contentHtml = CrmUtils.mdToHtml(article.getContent());
 //        article.setContent(contentHtml);
         //去一下作者的用户名
-        User user = userService.findUser(article.getId());
+        User user = userService.findUser(article.getAuthorId());
         ArticleVO articleVO = new ArticleVO();
         BeanUtils.copyProperties(article, articleVO);
         articleVO.setIconImage(user.getIconImage());
