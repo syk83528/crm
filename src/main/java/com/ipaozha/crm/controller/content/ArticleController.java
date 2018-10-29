@@ -28,7 +28,7 @@ public class ArticleController extends BaseController {
     private ArticleMapper articleMapper;
 
     @RequestMapping
-    public String list(Map<String, Object> map, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "5") Integer size) {
+    public String list(Map<String, Object> map, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size) {
         //管理员权限判断
 
         //获取数据
