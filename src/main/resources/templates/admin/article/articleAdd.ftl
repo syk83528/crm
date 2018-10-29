@@ -37,7 +37,7 @@
                 </div>
 
                 <div id="my-editormd" class="form-group">
-                    <textarea id="my-text" name="my-text" style="display:none;"></textarea>
+                    <textarea id="text" name="text" style="display:none;"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-default">提交</button>

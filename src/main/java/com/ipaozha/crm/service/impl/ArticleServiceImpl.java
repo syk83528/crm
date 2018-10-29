@@ -7,12 +7,14 @@ import com.ipaozha.crm.dao.ArticleMapper;
 import com.ipaozha.crm.dao.ContentMapper;
 import com.ipaozha.crm.exception.CrmAuthException;
 import com.ipaozha.crm.exception.CrmException;
+import com.ipaozha.crm.form.ArticleForm;
 import com.ipaozha.crm.pojo.Article;
 import com.ipaozha.crm.pojo.Category;
 import com.ipaozha.crm.pojo.User;
 import com.ipaozha.crm.service.ArticleService;
 import com.ipaozha.crm.service.UserService;
 import com.ipaozha.crm.utils.CrmUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,7 +32,7 @@ public class ArticleServiceImpl implements ArticleService {
     private ArticleMapper articleMapper;
 
     @Override
-    public Article saveArticle(Map<String, Object> map) throws CrmException, CrmAuthException {
+    public Article saveArticle(ArticleForm articleForm) throws CrmException, CrmAuthException {
         //这里还需要当前用户的信息
         User user = CrmUtils.getLoginUser(request);
         if (null == user) {
@@ -40,16 +42,9 @@ public class ArticleServiceImpl implements ArticleService {
         try {
             //取值
             Article article = new Article();
-            String title = (String) map.get("title");
-            Integer categoryId = new Integer((String) map.get("category"));
-            String content = (String) map.get("my-text");
-            String type = (String) map.get("type");
-            article.setTitle(title);
-            article.setCategoryId(categoryId);
-            article.setContent(content);
-            article.setAuthorId(user.getId());
-            article.setType(type);
+            BeanUtils.copyProperties(articleForm, article);
 
+            article.setAuthorId(user.getId());
 
             int result = articleMapper.insertSelective(article);
             if (result > 0) {

@@ -6,6 +6,7 @@ import com.ipaozha.crm.controller.BaseController;
 import com.ipaozha.crm.dao.ContentMapper;
 import com.ipaozha.crm.exception.CrmAuthException;
 import com.ipaozha.crm.exception.CrmException;
+import com.ipaozha.crm.form.ArticleForm;
 import com.ipaozha.crm.pojo.Article;
 import com.ipaozha.crm.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -14,12 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,8 +41,12 @@ public class ArticleApiController extends BaseController {
     private ContentMapper mapper;
 
     @RequestMapping("/publish")
-    public String publish(@RequestParam Map<String, Object> map) throws CrmException, CrmAuthException {
-        Article article = articleService.saveArticle(map);
+    public String publish(@Valid ArticleForm articleForm, BindingResult bindingResult, Map<String, Object> map) throws CrmException, CrmAuthException {
+        if (bindingResult.hasErrors()) {
+            throw new CrmException(RespEnum.params_error);
+        }
+
+        articleService.saveArticle(articleForm);
         //能到这里肯定成功
         map.put("url", "/admin/article");
         map.put("msg", "创建文章成功");
