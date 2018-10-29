@@ -91,10 +91,10 @@
                         </#if>
                     </td>
                     <td>
-                        <a href="${base}/admin/category/update?id=${article.id}">更新</a>
+                        <a href="${base}/admin/article/update?id=${article.id}">更新</a>
                     </td>
                     <td>
-                        <a href="${base}/api/admin/category/delete?id=${article.id}">删除</a>
+                        <a href="${base}/api/admin/article/delete?id=${article.id}">删除</a>
                     </td>
                 </tr>
                 </#list>
@@ -108,7 +108,7 @@
                 </li>
                 <#else >
                 <li>
-                    <a href="${base}/admin/category?page=${currentPage-1}">上一页</a>
+                    <a href="${base}/admin/article?page=${currentPage-1}">上一页</a>
                 </li>
                 </#if>
 
@@ -121,7 +121,7 @@
                 </li>
                     <#else >
                 <li>
-                    <a href="${base}/admin/category?page=${index}">${index}</a>
+                    <a href="${base}/admin/article?page=${index}">${index}</a>
                 </li>
                     </#if>
                 </#list>
@@ -133,7 +133,7 @@
                 </li>
                 <#else >
                 <li>
-                    <a href="${base}/admin/category?page=${currentPage+1}">下一页</a>
+                    <a href="${base}/admin/article?page=${currentPage+1}">下一页</a>
                 </li>
                 </#if>
                     </ul>
