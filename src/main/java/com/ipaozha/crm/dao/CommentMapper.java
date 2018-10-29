@@ -2,6 +2,8 @@ package com.ipaozha.crm.dao;
 
 import com.ipaozha.crm.pojo.Comment;
 
+import java.util.List;
+
 public interface CommentMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,8 @@ public interface CommentMapper {
     int updateByPrimaryKeySelective(Comment record);
 
     int updateByPrimaryKey(Comment record);
+
+    List<Comment> list(Integer articleId);
+
+    Comment selectByIp(String ip);
 }

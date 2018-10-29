@@ -13,4 +13,5 @@ public interface ArticleService {
     Article saveArticle(ArticleForm articleForm) throws CrmException, CrmAuthException;
 
     PageInfo<Article> list(Integer page, Integer size);
+
 }

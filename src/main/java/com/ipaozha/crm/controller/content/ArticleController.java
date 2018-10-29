@@ -5,10 +5,7 @@ import com.ipaozha.crm.VO.ArticleVO;
 import com.ipaozha.crm.controller.BaseController;
 import com.ipaozha.crm.dao.ArticleMapper;
 import com.ipaozha.crm.dao.ContentMapper;
-import com.ipaozha.crm.pojo.Article;
-import com.ipaozha.crm.pojo.Category;
-import com.ipaozha.crm.pojo.Content;
-import com.ipaozha.crm.pojo.User;
+import com.ipaozha.crm.pojo.*;
 import com.ipaozha.crm.utils.CrmUtils;
 import org.apache.ibatis.annotations.ResultMap;
 import org.springframework.beans.BeanUtils;
@@ -71,6 +68,10 @@ public class ArticleController extends BaseController {
         articleVO.setIconImage(user.getIconImage());
 
         map.put("content", articleVO);
+
+        //获取评论列表
+        List<Comment> commentList = commentService.list(article.getId());
+        map.put("commentList", commentList);
 
         return "admin/article/articleDetail";
     }

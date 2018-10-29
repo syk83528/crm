@@ -29,6 +29,16 @@
     <div id="content-editormd">
         <textarea style="display:none;">${content.content}</textarea>
     </div>
+
+    <ul>
+    <#list commentList as comment>
+        <li>
+            ${comment.content}
+        </li>
+    </#list>
+    </ul>
+    <#include "../comment/comment.ftl">
+    <#include "../comment/commentAdd.ftl">
 </div>
 
 

@@ -15,6 +15,8 @@ public enum RespEnum {
     category_file_empty_error(300, "分类图片不能为空"),
     category_type_exist_error(301, "分类类型已存在"),
     article_insert_error(400, "创建文章失败"),
+    comment_insert_error(450, "创建评论失败"),
+    comment_timeShort_error(451, "两次发布时间小于10秒"),
     ;
 
     private Integer code;

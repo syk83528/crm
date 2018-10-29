@@ -1,119 +1,200 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ipaozha.crm.dao.CommentMapper" >
-  <resultMap id="BaseResultMap" type="com.ipaozha.crm.pojo.Comment" >
-    <constructor >
-      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="parent_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="content" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="article_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="person_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ipaozha.crm.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.ipaozha.crm.pojo.Comment">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="address_ip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="article_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="parent_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="person_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="like_count" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="icon" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
-  <sql id="Base_Column_List" >
-    id, parent_id, content, article_id, person_id, create_time, update_time
+  <sql id="Base_Column_List">
+    id, address_ip, article_id, parent_id, content, person_id, status, like_count, create_time, 
+    update_time, name, icon
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from t_comment
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_comment
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ipaozha.crm.pojo.Comment" >
-    insert into t_comment (id, parent_id, content, 
-      article_id, person_id, create_time, 
-      update_time)
-    values (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
-      #{articleId,jdbcType=INTEGER}, #{personId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.ipaozha.crm.pojo.Comment">
+    insert into t_comment (id, address_ip, article_id, 
+      parent_id, content, person_id, 
+      status, like_count, create_time, 
+      update_time, name, icon
+      )
+    values (#{id,jdbcType=INTEGER}, #{addressIp,jdbcType=VARCHAR}, #{articleId,jdbcType=INTEGER}, 
+      #{parentId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{personId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{likeCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.ipaozha.crm.pojo.Comment" >
+  <insert id="insertSelective" parameterType="com.ipaozha.crm.pojo.Comment">
     insert into t_comment
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="parentId != null" >
-        parent_id,
+      <if test="addressIp != null">
+        address_ip,
       </if>
-      <if test="content != null" >
-        content,
-      </if>
-      <if test="articleId != null" >
+      <if test="articleId != null">
         article_id,
       </if>
-      <if test="personId != null" >
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="personId != null">
         person_id,
       </if>
-      <if test="createTime != null" >
+      <if test="status != null">
+        status,
+      </if>
+      <if test="likeCount != null">
+        like_count,
+      </if>
+      <if test="createTime != null">
         create_time,
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time,
       </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="parentId != null" >
-        #{parentId,jdbcType=INTEGER},
+      <if test="addressIp != null">
+        #{addressIp,jdbcType=VARCHAR},
       </if>
-      <if test="content != null" >
-        #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="articleId != null" >
+      <if test="articleId != null">
         #{articleId,jdbcType=INTEGER},
       </if>
-      <if test="personId != null" >
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null">
         #{personId,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="likeCount != null">
+        #{likeCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ipaozha.crm.pojo.Comment" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.ipaozha.crm.pojo.Comment">
     update t_comment
-    <set >
-      <if test="parentId != null" >
-        parent_id = #{parentId,jdbcType=INTEGER},
+    <set>
+      <if test="addressIp != null">
+        address_ip = #{addressIp,jdbcType=VARCHAR},
       </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="articleId != null" >
+      <if test="articleId != null">
         article_id = #{articleId,jdbcType=INTEGER},
       </if>
-      <if test="personId != null" >
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null">
         person_id = #{personId,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="likeCount != null">
+        like_count = #{likeCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ipaozha.crm.pojo.Comment" >
+  <update id="updateByPrimaryKey" parameterType="com.ipaozha.crm.pojo.Comment">
     update t_comment
-    set parent_id = #{parentId,jdbcType=INTEGER},
-      content = #{content,jdbcType=VARCHAR},
+    set address_ip = #{addressIp,jdbcType=VARCHAR},
       article_id = #{articleId,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
       person_id = #{personId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      like_count = #{likeCount,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      name = #{name,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <sql id="Base_Table">
+    t_comment
+  </sql>
+
+  <select id="selectByIp" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from <include refid="Base_Table" />
+    where address_ip = #{ip}
+    order by update_time desc
+    limit 1
+  </select>
+
+  <select id="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from <include refid="Base_Table" />
+    where article_id = #{articleId}
+    order by update_time desc
+  </select>
 </mapper>
