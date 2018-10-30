@@ -1,3 +1,7 @@
+body {
+  background-color:#E9E9E9;
+}
+
 #wrapper {
   width: 60%;
   display: flex;
@@ -15,9 +19,85 @@
         display: block;
         margin: 0 auto;
       }
-      //display: flex;
-      //align-items: center;
-      //justify-content:center;
     }
+  }
+}
+
+// 添加评论
+#comment-add {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  .top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+
+
+}
+
+
+.comment-title {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  justify-content: space-between;
+  width: 60%;
+  .comment-title-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 20px;
+    .comment-count {
+      font-family: "Meiryo UI", "Microsoft YaHei", "Malgun Gothic", "Segoe UI", "Trebuchet MS", Helvetica, Monaco, monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serifGeorgia,Serif;
+      color: #1a1a1a;
+    }
+  }
+
+}
+
+.comment:hover {
+  width: 62%;
+  box-shadow:4px 4px 3px #00c4ff;
+}
+
+
+.comment {
+  margin: 10px auto;
+  width: 60%;
+  padding: 5px 5px;
+  //阴影
+  background-color: white;
+  box-shadow:2px 2px 3px #aaaaaa;
+  //动画
+  transition: all 1s;
+
+  #comment-header {
+    display: flex;
+    flex-direction: row;
+    .comment-icon {
+      margin-left: 10px;
+      margin-top: 10px;
+    }
+
+
+    .comment-header-right {
+      display: flex;
+      flex-direction: column;
+      margin-left: 10px;
+      .comment-name {
+        margin-top: 10px;
+
+      }
+    }
+  }
+  #comment-content {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: Georgia, serif;
   }
 }

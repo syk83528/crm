@@ -19,12 +19,11 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/admin/article")
 public class ArticleController extends BaseController {
     @Autowired
     private ArticleMapper articleMapper;
 
-    @RequestMapping
+    @RequestMapping("/admin/article")
     public String list(Map<String, Object> map, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size) {
         //管理员权限判断
 
@@ -45,7 +44,7 @@ public class ArticleController extends BaseController {
     }
 
     //发布页面
-    @RequestMapping("/add")
+    @RequestMapping("/admin/article/add")
     public String add(Map<String, Object> map) {
 
         List<Category> categoryList = categoryService.list();
@@ -55,7 +54,7 @@ public class ArticleController extends BaseController {
     }
 
     //详情页面
-    @RequestMapping("/{id}")
+    @RequestMapping("/article/{id}")
     public String article(@PathVariable("id") Integer id, Map<String, Object> map) {
         Article article = articleMapper.selectByPrimaryKey(id);
         //现在不需要先转html

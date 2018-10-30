@@ -9,4 +9,6 @@
 <#--bootstrap 这个是3.5.1cdn的css-->
 <link rel="stylesheet" href="/css/bootstrap.min.css" />
 <#--左边nav使用的style.css-->
-<link rel="stylesheet" href="${base}/css/style.css">
+<link rel="stylesheet" href="/css/style.css">
+
+<#--<link rel="stylesheet" href="/css/base.css"-->

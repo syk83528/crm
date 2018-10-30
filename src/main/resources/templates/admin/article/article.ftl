@@ -64,7 +64,7 @@
                         ${article.title!""}
                     </td>
                     <td>
-                        <a href="/admin/article/${article.id}">${article.content!""}</a>
+                        <a href="/article/${article.id}">${article.content!""}</a>
                     </td>
                     <td>
                         ${article.authorId!""}
