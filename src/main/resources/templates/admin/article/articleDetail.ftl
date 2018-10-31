@@ -64,8 +64,8 @@
             <div class="comment-header-right">
                 <label class="comment-name">${comment.name}</label>
                 <span>
-                <#if (content.updateTime)??>
-                    ${content.updateTime?string('yyyy-MM-dd hh:mm:ss')}
+                <#if (comment.updateTime)??>
+                    ${(comment.updateTime)?string('yyyy-MM-dd hh:mm:ss')}
                 </#if>
                 </span>
             </div>
