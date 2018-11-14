@@ -1,4 +1,4 @@
-package com.ipaozha.crm.mapper;
+package com.ipaozha.crm;
 
 import com.ipaozha.crm.dao.CategoryMapper;
 import com.ipaozha.crm.pojo.Category;

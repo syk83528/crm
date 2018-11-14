@@ -1,4 +1,4 @@
-package com.ipaozha.crm.service.impl;
+package com.ipaozha.crm;
 
 import com.ipaozha.crm.exception.CrmException;
 import com.ipaozha.crm.form.UserForm;

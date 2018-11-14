@@ -1,5 +1,6 @@
-package com.ipaozha.crm.dao;
+package com.ipaozha.crm;
 
+import com.ipaozha.crm.dao.CategoryMapper;
 import com.ipaozha.crm.pojo.Category;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
